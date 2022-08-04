@@ -5,6 +5,10 @@ fn main() {
     let mode = mode(&ints);
     let median = median(ints);
     println!("The median is {} and the mode is {}", median, mode);
+
+    let word = "word";
+    let new_word = pig_latin(word);
+    println!("the pig latin for {} is {}", word, new_word);
 }
 
 fn median(mut ints: Vec<i32>) -> i32 {
@@ -29,4 +33,14 @@ fn mode(ints: &[i32]) -> i32 {
         }
     }
     mode
+}
+
+fn pig_latin(word: &str) -> String {
+    const VOWELS: [char; 5] = ['a', 'e', 'i', 'o', 'u'];
+    let mut chars = word.chars();
+    let first_letter = chars.next().unwrap();
+    if VOWELS.contains(&first_letter) {
+        return format!("{}hay", word);
+    }
+    format!("{}{}ay", chars.as_str(), first_letter)
 }
